@@ -1,0 +1,111 @@
+<main class="container">
+    <div class="row container-fluid header-shop">
+        <img class="logo col-3" src="/assets/Group-2290.svg" alt="Demo Shop" title="Demo Shop" />
+        <ul class="nav nav-shop justify-content-end col-9">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container-fluid">
+        <section class="pagamento col-12">
+                <div class="cartao col-4 left">
+                    <a href="" class="linkAltera">< Alterar forma de pagamento</a>
+                    <h1 id="title-checkout" aria-label="Adicione um novo cartão de crédito">
+                        <img class="img-title-checkout" src="/assets/Group-1977.svg" alt="icon adicione" title="icon adicione" aria-hidden="true" />
+                        <span class="txt-title-checkout" aria-hidden="true">Adicione um novo cartão de crédito</span>
+                    </h1>
+                    
+                    <div id="cartaoCard" class="dadosPessoais {{CardBandeira}}" *ngIf="changeCard" >
+                            <p class="numeroCartao" *ngIf="validaNumeroCard">{{numeroCartaoCard}}</p> 
+                            <p class="numeroCartao" *ngIf="!validaNumeroCard">********************</p>
+
+                            <p class="nomeCompletoCartao" aria-label="Nome do Titular, data validade 00/00">
+                                <span *ngIf="validaNomeCard">{{nomeCartaoCard}} </span>
+                                <span *ngIf="!validaNomeCard">Nome do titular</span>
+
+                                <span *ngIf="validaValidadeCard" class="numeroValidade">{{validadeCartaoCard}}</span>
+                                <span *ngIf="!validaValidadeCard" class="numeroValidade">00/00</span>
+                            </p>
+                    </div>
+                   
+
+                    <div id="cartaoCard" class="dadosPessoais inverso {{CardBandeira}}" *ngIf="!changeCard"> </div>
+                </div>
+            
+                <div class="dadosCadastro col-8 left">
+                    <ul class="nav step justify-content-end">
+                        <li class="nav-item">
+                            <i class="material-icons"> check_circle</i>
+                            <a class="nav-link active" href="#">Carrinho</a>
+                        </li>
+                        <li class="nav-item">
+                            <i class = "material-icons iconNumber"> panorama_fish_eye </i>
+                            <a class="nav-link" href="#">Pagamento</a>
+                            <i class = "material-icons iconSetas">  keyboard_arrow_right</i>
+                        </li>
+                        <li class="nav-item">
+                            <i class = "material-icons iconNumber"> panorama_fish_eye </i>
+                            <a class="nav-link" href="#">Confirmação</a>
+                            <i class = "material-icons iconSetas">  keyboard_arrow_right</i>
+                        </li>
+                    </ul>
+
+                    <form class="right col-9 formCadastro" [formGroup]="form">
+                        <div class="form-group col-12 left">
+                            <label for="numeroCartao" class="{{errorLabel}}">Número do cartão</label>
+                            <input type="number" class="form-control {{error}}" id="numeroCartao" formControlName="numeroCartao" maxlength="16" (ngModelChange)="numeroCartaoChange($event)">
+                        </div>
+                        <div class="form-group col-12 left">
+                            <label for="nome">Nome (igual do cartão)</label>
+                            <input type="text" class="form-control" id="nome" formControlName="nome"  (ngModelChange)="numeroNomeChange($event)">
+                        </div>
+                        <div class="infoCartao col-12 left">
+                            <div class="form-group col-6 left inputValidade">
+                                <label for="validade">Validade</label>
+                                <input type="number" class="form-control" id="validade" formControlName="validade" (ngModelChange)="numeroValidadeChange($event)">
+                            </div>
+                            <div class="form-group col-5 right">
+                                <label for="cvv">cvv</label>
+                                <i class = "material-icons icon-info" (click)="changeCartao($event)"> informações</ i>
+                                <input type="number" class="form-control" id="cvv" formControlName="cvv" maxlength="3" (ngModelChange)="numeroCvvChange($event)">
+                            </div>
+                        </div>
+                        <div class="form-group col-12 left selectParcela">
+                            <label for="parcela">Números de parcela</label>
+                            <i class = "material-icons">keyboard_arrow_down</i>
+                            <select class="form-control" id="parcela" formControlName="parcela">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" (click)="validaForm()">Continuar</button>
+                       
+                    </form>
+                </div>
+                </section>
+                <section class="col-12">
+                <div class="card-resumo">
+            
+                </div>
+        </section>
+    </div>
+</main>
+<footer></footer>
